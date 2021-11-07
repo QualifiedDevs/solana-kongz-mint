@@ -22,12 +22,7 @@ import {
 import Timer from "./Timer";
 
 const ConnectButton = styled(WalletDialogButton)`
-  background-color: rgb(200, 0, 0);
-  font-family: Game Of Squids;
 
-  :hover {
-    background-color: rgb(160, 0, 0);
-  }
 `;
 
 const CounterText = styled.span``; // add your styles here
@@ -35,15 +30,28 @@ const CounterText = styled.span``; // add your styles here
 const MintContainer = styled.div``; // add your styles here
 
 const MintButton = styled(Button)`
-  font-family: Game Of Squids;
-  color: white;
-  background-color: rgb(200, 0, 0);
-  font-size: 2rem;
 
-  :hover {
-    background-color: rgb(160, 0, 0);
-  }
 `; // add your styles here
+
+const connectwalletmain = {
+  fontFamily: "Dogica",
+  letterSpacing: "-2.5px",
+  backgroundColor: "rgb(200, 0, 0)",
+  fontSize: ".8em",
+  ":hover": {
+    color: "rgb(160,0,0)",
+  }
+}
+
+const mintingbutton = {
+  fontFamily: "Game Of Squids",
+  backgroundColor: "rgb(200, 0, 0)",
+  color: "white",
+  fontSize: "1.8em",
+  ":hover": {
+    color: "rgb(160,0,0)",
+  }
+}
 
 export interface HomeProps {
   candyMachineId: anchor.web3.PublicKey;
@@ -106,7 +114,7 @@ const Home = (props: HomeProps) => {
       <header>
         <h2 className="logo">Solana Kongz</h2>
         {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
+          <ConnectButton className="connectbutton" style={connectwalletmain}>Connect Wallet</ConnectButton>
         ) : (
           <div className="connected-wallet">
             <div className="connected-icon"></div>
@@ -225,7 +233,6 @@ const Home = (props: HomeProps) => {
     <>
       <main>
         <div className="hero">
-          <div className="hero-image"></div>
           <Header />
           <div className="main-content">
             <Timer>
@@ -243,9 +250,9 @@ const Home = (props: HomeProps) => {
                 <div className="mint-container">
                 <MintContainer>
                   {!wallet ? (
-                    <ConnectButton>Connect Wallet</ConnectButton>
+                    <h2 className="call-to-action">Connect a Wallet to Adopt an Ape</h2>
                   ) : (
-                    <MintButton
+                    <MintButton className="MintButton" style={mintingbutton}
                       disabled={isSoldOut || isMinting || !isActive}
                       onClick={onMint}
                       variant="contained"
