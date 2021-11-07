@@ -21,17 +21,13 @@ import {
 
 import Timer from "./Timer";
 
-const ConnectButton = styled(WalletDialogButton)`
-
-`;
+const ConnectButton = styled(WalletDialogButton)``; // add your
 
 const CounterText = styled.span``; // add your styles here
 
 const MintContainer = styled.div``; // add your styles here
 
-const MintButton = styled(Button)`
-
-`; // add your styles here
+const MintButton = styled(Button)``; // add your styles here
 
 const connectwalletmain = {
   fontFamily: "Dogica",
@@ -40,8 +36,9 @@ const connectwalletmain = {
   fontSize: ".8em",
   ":hover": {
     color: "rgb(160,0,0)",
-  }
-}
+  },
+  margin: "auto",
+};
 
 const mintingbutton = {
   fontFamily: "Game Of Squids",
@@ -50,8 +47,9 @@ const mintingbutton = {
   fontSize: "1.8em",
   ":hover": {
     color: "rgb(160,0,0)",
-  }
-}
+  },
+  margin: "0 0 20%",
+};
 
 export interface HomeProps {
   candyMachineId: anchor.web3.PublicKey;
@@ -112,37 +110,45 @@ const Home = (props: HomeProps) => {
   const Header = () => {
     return (
       <header>
-        <h2 className="logo">Solana Kongz</h2>
-        {!wallet ? (
-          <ConnectButton className="connectbutton" style={connectwalletmain}>Connect Wallet</ConnectButton>
-        ) : (
-          <div className="connected-wallet">
-            <div className="connected-icon"></div>
-            <h4>{shortenAddress(wallet.publicKey.toBase58())}</h4>
-          </div>
-        )}
-        <nav className="socials">
-          <ul>
-            <li>
-              <a href="/">
-                <img
-                  src="discord.svg"
-                  alt="discord-icon"
-                  className="icon"
-                ></img>
-              </a>
-            </li>
-            <li>
-              <a href="https://twitter.com/SolanaKongz">
-                <img
-                  src="twitter.svg"
-                  alt="twitter-icon"
-                  className="icon"
-                ></img>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div className="grid-item">
+          <h2 className="logo">Solana Kongz</h2>
+        </div>
+        <div className="grid-item">
+          {!wallet ? (
+            <ConnectButton className="connectbutton" style={connectwalletmain}>
+              Connect Wallet
+            </ConnectButton>
+          ) : (
+            <div className="connected-wallet">
+              <div className="connected-icon"></div>
+              <h4>{shortenAddress(wallet.publicKey.toBase58())}</h4>
+            </div>
+          )}
+        </div>
+        <div className="grid-item">
+          <nav className="socials">
+            <ul>
+              <li>
+                <a href="/">
+                  <img
+                    src="discord.svg"
+                    alt="discord-icon"
+                    className="icon discord"
+                  ></img>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/SolanaKongz">
+                  <img
+                    src="twitter.svg"
+                    alt="twitter-icon"
+                    className="icon twitter"
+                  ></img>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
     );
   };
@@ -236,23 +242,16 @@ const Home = (props: HomeProps) => {
           <Header />
           <div className="main-content">
             <Timer>
-              <div className="mint-ui">
-                {wallet && (
-                  <div className="mint-details">
-                    <p className="item1 item">
-                      Balance: {(balance || 0).toLocaleString()} SOL
-                    </p>
-                    <p className="item2 item">Total Available: {itemsAvailable}</p>
-                    <p className="item3 item">Remaining: {itemsRemaining}</p>
-                  </div>
-                )}
-
-                <div className="mint-container">
+              <div className="mint-container">
                 <MintContainer>
                   {!wallet ? (
-                    <h2 className="call-to-action">Connect a Wallet to Adopt an Ape</h2>
+                    <h2 className="call-to-action">
+                      Connect a Wallet to Adopt an Ape
+                    </h2>
                   ) : (
-                    <MintButton className="MintButton" style={mintingbutton}
+                    <MintButton
+                      className="MintButton"
+                      style={mintingbutton}
                       disabled={isSoldOut || isMinting || !isActive}
                       onClick={onMint}
                       variant="contained"
@@ -278,8 +277,18 @@ const Home = (props: HomeProps) => {
                     </MintButton>
                   )}
                 </MintContainer>
-                </div>
               </div>
+              {wallet && (
+                <div className="mint-details">
+                  <p className="item1 item">
+                    Balance: {(balance || 0).toLocaleString()} SOL
+                  </p>
+                  <p className="item2 item">
+                    Total Available: {itemsAvailable}
+                  </p>
+                  <p className="item3 item">Remaining: {itemsRemaining}</p>
+                </div>
+              )}
             </Timer>
           </div>
           <Snackbar

@@ -29,12 +29,18 @@ ul {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 5px;
   padding: 0 10vw;
   background-color: rgb(2, 17, 0);
   height: clamp(80px, 15vw, 100px);
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .socials ul {
@@ -42,8 +48,7 @@ header {
 }
 
 .socials li {
-  padding: 1vw;
-  height: 80%;
+  margin: 0 .4em;
 }
 
 .socials img {
@@ -51,10 +56,15 @@ header {
   height: 2.2em;
 }
 
+.twitter {
+  padding-right: 0;
+}
+
 .logo {
   font-family: "Game Of Squids";
   font-weight: normal;
   font-style: normal;
+  margin: auto;
 }
 
 .icon {
@@ -73,8 +83,9 @@ header {
 
 .main-content {
   display: flex;
-  justify-content: center;
-  padding: 30vh 5% 0 5%;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50vh;
   height: auto;
 }
 
@@ -93,6 +104,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: clamp(420px, 60%, 850px);
 }
 
 .item {
@@ -135,6 +147,7 @@ header {
   margin: auto;
   text-align: center;
   margin-top: 80px;
+  display: flex;
 }
 
 .call-to-action {
@@ -151,9 +164,8 @@ header {
   .header {
     padding: 0;
     margin: 0;
-    font-size: 14px;
   }
-
+  
   .timer-text {
     font-size: 2.2em;
   }
