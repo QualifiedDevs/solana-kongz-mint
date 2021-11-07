@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Dogica';
+    src: url('Dogica.woff2') format('woff2'),
+        url('Dogica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Game Of Squids';
+    src: url('GameOfSquids.woff2') format('woff2'),
+        url('GameOfSquids.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

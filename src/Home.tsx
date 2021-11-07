@@ -19,6 +19,9 @@ import {
   shortenAddress,
 } from "./candy-machine";
 
+import Header from "./Header";
+import Timer from "./Timer";
+
 const ConnectButton = styled(WalletDialogButton)``;
 
 const CounterText = styled.span``; // add your styles here
@@ -166,61 +169,76 @@ const Home = (props: HomeProps) => {
   ]);
 
   return (
-    <main>
-      {wallet && (
-        <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
-      )}
+    <>
+      <main>
+        <div className="hero">
+          <Header />
+          <div className="main-content">
+            <Timer>
+              {wallet && (
+                <p>
+                  Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}
+                </p>
+              )}
 
-      {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
+              {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
 
-      {wallet && <p>Total Available: {itemsAvailable}</p>}
+              {wallet && <p>Total Available: {itemsAvailable}</p>}
 
-      {wallet && <p>Redeemed: {itemsRedeemed}</p>}
+              {wallet && <p>Redeemed: {itemsRedeemed}</p>}
 
-      {wallet && <p>Remaining: {itemsRemaining}</p>}
+              {wallet && <p>Remaining: {itemsRemaining}</p>}
 
-      <MintContainer>
-        {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
-        ) : (
-          <MintButton
-            disabled={isSoldOut || isMinting || !isActive}
-            onClick={onMint}
-            variant="contained"
+              <MintContainer>
+                {!wallet ? (
+                  <ConnectButton>Connect Wallet</ConnectButton>
+                ) : (
+                  <MintButton
+                    disabled={isSoldOut || isMinting || !isActive}
+                    onClick={onMint}
+                    variant="contained"
+                  >
+                    {isSoldOut ? (
+                      "SOLD OUT"
+                    ) : isActive ? (
+                      isMinting ? (
+                        <CircularProgress />
+                      ) : (
+                        "MINT"
+                      )
+                    ) : (
+                      <Countdown
+                        date={startDate}
+                        onMount={({ completed }) =>
+                          completed && setIsActive(true)
+                        }
+                        onComplete={() => setIsActive(true)}
+                        renderer={renderCounter}
+                      />
+                    )}
+                  </MintButton>
+                )}
+              </MintContainer>
+            </Timer>
+          </div>
+          <Snackbar
+            open={alertState.open}
+            autoHideDuration={6000}
+            onClose={() => setAlertState({ ...alertState, open: false })}
           >
-            {isSoldOut ? (
-              "SOLD OUT"
-            ) : isActive ? (
-              isMinting ? (
-                <CircularProgress />
-              ) : (
-                "MINT"
-              )
-            ) : (
-              <Countdown
-                date={startDate}
-                onMount={({ completed }) => completed && setIsActive(true)}
-                onComplete={() => setIsActive(true)}
-                renderer={renderCounter}
-              />
-            )}
-          </MintButton>
-        )}
-      </MintContainer>
-
-      <Snackbar
-        open={alertState.open}
-        autoHideDuration={6000}
-        onClose={() => setAlertState({ ...alertState, open: false })}
-      >
-        <Alert
-          onClose={() => setAlertState({ ...alertState, open: false })}
-          severity={alertState.severity}
-        >
-          {alertState.message}
-        </Alert>
-      </Snackbar>
-    </main>
+            <Alert
+              onClose={() => setAlertState({ ...alertState, open: false })}
+              severity={alertState.severity}
+            >
+              {alertState.message}
+            </Alert>
+          </Snackbar>
+        </div>
+        <div className="nobody-reads">
+          <h4>No one reads the site anyway.</h4>
+        </div>
+      </main>
+    </>
   );
 };
 
