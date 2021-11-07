@@ -84,8 +84,28 @@ header {
   background-color:rgb(2, 17, 0)
 }
 
+.connected-wallet {
+  font-family: Dogica;
+  display: flex;
+  align-items: center;
+}
+
+.connected-icon {
+  border-radius: 100%;
+  width: .6em;
+  height: .6em;
+  background-color: rgb(1, 158, 1);
+  margin-right: .5em;
+}
+
 @media screen and (max-width: 650px) {
   .hero {
     background-position: 60% 0;
+  }
+}
+
+@media screen and (min-aspect-ratio: 3122/1750) {
+  .hero {
+    background-size: 100% auto;
   }
 }

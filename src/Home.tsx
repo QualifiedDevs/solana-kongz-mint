@@ -19,7 +19,6 @@ import {
   shortenAddress,
 } from "./candy-machine";
 
-import Header from "./Header";
 import Timer from "./Timer";
 
 const ConnectButton = styled(WalletDialogButton)``;
@@ -84,6 +83,44 @@ const Home = (props: HomeProps) => {
       setStartDate(goLiveDate);
       setCandyMachine(candyMachine);
     })();
+  };
+
+  const Header = () => {
+    return (
+      <header>
+        <h2 className="logo">Solana Kongz</h2>
+        {!wallet ? (
+          <ConnectButton>Connect Wallet</ConnectButton>
+        ) : (
+          <div className="connected-wallet">
+            <div className="connected-icon"></div>
+            <h4>{shortenAddress(wallet.publicKey.toBase58())}</h4>
+          </div>
+        )}
+        <nav className="socials">
+          <ul>
+            <li>
+              <a href="/">
+                <img
+                  src="discord.svg"
+                  alt="discord-icon"
+                  className="icon"
+                ></img>
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                <img
+                  src="twitter.svg"
+                  alt="twitter-icon"
+                  className="icon"
+                ></img>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    );
   };
 
   const onMint = async () => {
