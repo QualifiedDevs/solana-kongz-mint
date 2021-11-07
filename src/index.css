@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: Dogica, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,6 +13,10 @@ body {
 body * {
   margin: 0;
   padding: 0;
+}
+
+p {
+  letter-spacing: -3px;
 }
 
 code {
@@ -29,8 +33,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 10%;
-  background-color: rgb(47, 45, 179);
-  height: clamp(80px, 15vw, 100px)
+  background-color: rgb(2, 17, 0);
+  height: clamp(80px, 15vw, 100px);
 }
 
 .socials ul {
@@ -38,7 +42,7 @@ header {
 }
 
 .socials li {
-  margin: 12%;
+  margin: 10px;
   height: 80%;
 }
 
@@ -54,10 +58,18 @@ header {
 
 .hero {
   height: 100vh;
+  position: relative;
+}
+
+.hero-image {
+  height: 100%;
+  width: 100%;
   background-image: url(gorilla.png);
-  background-repeat: no-repeat;
   background-size: auto 100%;
-  background-position: center 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -1;
 }
 
 .main-content {
@@ -68,10 +80,32 @@ header {
 }
 
 .timer-text {
-  color: yellow;
+  color: rgb(221, 221, 0);
   font-family: "Game Of Squids";
   font-size: 3em;
   white-space: nowrap;
+  text-shadow: 2px 2px black;
+}
+
+.mint-details {
+  background-color: rgb(194, 156, 50);
+  border: 2px solid white;
+  border-radius: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item {
+  padding: 10px;
+  line-height: 22px;
+  height: 100%;
+}
+
+.item2 {
+  border-width: 0 2px;
+  border-color: white;
+  border-style: solid;
 }
 
 .nobody-reads {
@@ -81,7 +115,7 @@ header {
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color:rgb(2, 17, 0)
+  background-color: rgb(2, 17, 0);
 }
 
 .connected-wallet {
@@ -92,20 +126,31 @@ header {
 
 .connected-icon {
   border-radius: 100%;
-  width: .6em;
-  height: .6em;
+  width: 0.6em;
+  height: 0.6em;
   background-color: rgb(1, 158, 1);
-  margin-right: .5em;
+  margin-right: 0.5em;
+}
+
+.mint-container {
+  margin: auto;
+  text-align: center;
+  margin-top: 80px;
 }
 
 @media screen and (max-width: 650px) {
-  .hero {
-    background-position: 60% 0;
+  .hero-image {
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .mint-container {
+    position: static;
   }
 }
 
 @media screen and (min-aspect-ratio: 3122/1750) {
-  .hero {
+  .hero-image {
     background-size: 100% auto;
   }
 }

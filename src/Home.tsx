@@ -21,13 +21,29 @@ import {
 
 import Timer from "./Timer";
 
-const ConnectButton = styled(WalletDialogButton)``;
+const ConnectButton = styled(WalletDialogButton)`
+  background-color: rgb(200, 0, 0);
+  font-family: Game Of Squids;
+
+  :hover {
+    background-color: rgb(160, 0, 0);
+  }
+`;
 
 const CounterText = styled.span``; // add your styles here
 
 const MintContainer = styled.div``; // add your styles here
 
-const MintButton = styled(Button)``; // add your styles here
+const MintButton = styled(Button)`
+  font-family: Game Of Squids;
+  color: white;
+  background-color: rgb(200, 0, 0);
+  font-size: 2rem;
+
+  :hover {
+    background-color: rgb(160, 0, 0);
+  }
+`; // add your styles here
 
 export interface HomeProps {
   candyMachineId: anchor.web3.PublicKey;
@@ -109,7 +125,7 @@ const Home = (props: HomeProps) => {
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="https://twitter.com/SolanaKongz">
                 <img
                   src="twitter.svg"
                   alt="twitter-icon"
@@ -209,53 +225,54 @@ const Home = (props: HomeProps) => {
     <>
       <main>
         <div className="hero">
+          <div className="hero-image"></div>
           <Header />
           <div className="main-content">
             <Timer>
-              {wallet && (
-                <p>
-                  Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}
-                </p>
-              )}
-
-              {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
-
-              {wallet && <p>Total Available: {itemsAvailable}</p>}
-
-              {wallet && <p>Redeemed: {itemsRedeemed}</p>}
-
-              {wallet && <p>Remaining: {itemsRemaining}</p>}
-
-              <MintContainer>
-                {!wallet ? (
-                  <ConnectButton>Connect Wallet</ConnectButton>
-                ) : (
-                  <MintButton
-                    disabled={isSoldOut || isMinting || !isActive}
-                    onClick={onMint}
-                    variant="contained"
-                  >
-                    {isSoldOut ? (
-                      "SOLD OUT"
-                    ) : isActive ? (
-                      isMinting ? (
-                        <CircularProgress />
-                      ) : (
-                        "MINT"
-                      )
-                    ) : (
-                      <Countdown
-                        date={startDate}
-                        onMount={({ completed }) =>
-                          completed && setIsActive(true)
-                        }
-                        onComplete={() => setIsActive(true)}
-                        renderer={renderCounter}
-                      />
-                    )}
-                  </MintButton>
+              <div className="mint-ui">
+                {wallet && (
+                  <div className="mint-details">
+                    <p className="item1 item">
+                      Balance: {(balance || 0).toLocaleString()} SOL
+                    </p>
+                    <p className="item2 item">Total Available: {itemsAvailable}</p>
+                    <p className="item3 item">Remaining: {itemsRemaining}</p>
+                  </div>
                 )}
-              </MintContainer>
+
+                <div className="mint-container">
+                <MintContainer>
+                  {!wallet ? (
+                    <ConnectButton>Connect Wallet</ConnectButton>
+                  ) : (
+                    <MintButton
+                      disabled={isSoldOut || isMinting || !isActive}
+                      onClick={onMint}
+                      variant="contained"
+                    >
+                      {isSoldOut ? (
+                        "SOLD OUT"
+                      ) : isActive ? (
+                        isMinting ? (
+                          <CircularProgress />
+                        ) : (
+                          "MINT"
+                        )
+                      ) : (
+                        <Countdown
+                          date={startDate}
+                          onMount={({ completed }) =>
+                            completed && setIsActive(true)
+                          }
+                          onComplete={() => setIsActive(true)}
+                          renderer={renderCounter}
+                        />
+                      )}
+                    </MintButton>
+                  )}
+                </MintContainer>
+                </div>
+              </div>
             </Timer>
           </div>
           <Snackbar
