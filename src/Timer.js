@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Timer = ({ children }) => {
   const endTime = process.env.REACT_APP_CANDY_START_DATE;
-  const getTime = () => endTime - Date.now();
+  const getTime = () => endTime * 1000 - Date.now();
 
   const [time, setTime] = useState(getTime());
 
