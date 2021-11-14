@@ -21,11 +21,15 @@ const Timer = ({ children }) => {
     return `${days} : ${hours} : ${minutes} : ${seconds}`;
   };
 
-  return <>{time <= 0 ? children : <p className="timer-text">{getFormattedTime()}</p>}</>;
-  //If time is <= 0 return children, otherwise return timer!
+  return (
+    <>
+      {time <= 0 ? (
+        children
+      ) : (
+        <p className="timer-text">{getFormattedTime()}</p>
+      )}
+    </>
+  );
 };
 
 export default Timer;
-
-//  Timer needs to accept children.
-// The children is gonna be function components. Can I get more specific?

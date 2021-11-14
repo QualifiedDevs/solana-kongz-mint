@@ -278,7 +278,7 @@ const Home = (props: HomeProps) => {
                   )}
                 </MintContainer>
               </div>
-              {wallet && (
+              { /*wallet && (
                 <div className="mint-details">
                   <p className="item1 item">
                     Balance: {(balance || 0).toLocaleString()} SOL
@@ -288,7 +288,7 @@ const Home = (props: HomeProps) => {
                   </p>
                   <p className="item3 item">Remaining: {itemsRemaining}</p>
                 </div>
-              )}
+              )*/}
             </Timer>
           </div>
           <Snackbar
