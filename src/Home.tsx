@@ -288,7 +288,7 @@ const Home = (props: HomeProps) => {
                   </p>
                   <p className="item3 item">Remaining: {itemsRemaining}</p>
                 </div>
-              )*/}
+              ) */}
             </Timer>
           </div>
           <Snackbar
