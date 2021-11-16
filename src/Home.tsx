@@ -240,7 +240,7 @@ const Home = (props: HomeProps) => {
       <main>
         <div className="hero">
           <Header />
-          <div className="main-content">
+          {/* <div className="main-content">
             <Timer>
               <div className="mint-container">
                 <MintContainer>
@@ -290,7 +290,7 @@ const Home = (props: HomeProps) => {
                 </div>
               )}
             </Timer>
-          </div>
+              </div> */}
           <Snackbar
             open={alertState.open}
             autoHideDuration={6000}
